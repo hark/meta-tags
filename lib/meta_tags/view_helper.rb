@@ -186,7 +186,7 @@ module MetaTags
       meta_tags.each do |property, data|
         if data.is_a?(Hash)
           result.concat process_tree(property, data)
-          meta_tags.delete(property)
+          meta_tags.delete_if { |p, d| p == property && d.is_a?(Hash) }
         end
       end
 
